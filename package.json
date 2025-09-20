@@ -1,0 +1,21 @@
+{
+  "name": "wa-expense-bot",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "migrate": "node db/migrate.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "dayjs": "^1.11.9",
+    "express": "^4.18.2",
+    "sqlite3": "^5.1.6",
+    "twilio": "^4.8.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
