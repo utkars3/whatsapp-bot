@@ -1,31 +1,68 @@
-import sqlite3 from 'sqlite3';
-import { DB_FILE } from './config/dbConfig.js';
+import { createClient } from '@supabase/supabase-js';
+import { SUPABASE_URL, SUPABASE_ANON_KEY } from './config/supabaseConfig.js';
 
-const sqlite = sqlite3.verbose();
-const db = new sqlite.Database(DB_FILE);
+const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-export const run = (sql, params = []) =>
-  new Promise((resolve, reject) => {
-    db.run(sql, params, function (err) {
-      if (err) return reject(err);
-      resolve(this);
-    });
-  });
+export const run = async (sql, params = []) => {
+  if (sql.toLowerCase().includes('insert into expenses')) {
+    const [user_id, amount, item, category, created_at] = params;
+    const { data, error } = await supabase
+      .from('expenses')
+      .insert([{ user_id, amount, item, category, created_at }])
+      .select()
+      .single();
+      
+    if (error) throw error;
+    return { lastID: data.id };
+  }
+  
+  // For delete operations
+  if (sql.toLowerCase().includes('delete from expenses')) {
+    const { error } = await supabase
+      .from('expenses')
+      .delete()
+      .is('user', params[0] || null);
+      
+    if (error) throw error;
+    return { changes: 1 };
+  }
+};
 
-export const all = (sql, params = []) =>
-  new Promise((resolve, reject) => {
-    db.all(sql, params, (err, rows) => {
-      if (err) return reject(err);
-      resolve(rows);
-    });
-  });
+export const all = async (sql, params = []) => {
+  // Handle different types of select queries
+  if (sql.includes('created_at >= ?')) {
+    const [user_id, sinceIso] = params;
+    const { data, error } = await supabase
+      .from('expenses')
+      .select('*')
+      .eq('user_id', user_id)
+      .gte('created_at', sinceIso)
+      .order('created_at', { ascending: false });
+      
+    if (error) throw error;
+    return data;
+  }
+  
+  // For simple user-based queries
+  const { data, error } = await supabase
+    .from('expenses')
+    .select('*')
+    .eq('user_id', params[0])
+    .order('created_at', { ascending: false });
+    
+  if (error) throw error;
+  return data;
+};
 
-export const get = (sql, params = []) =>
-  new Promise((resolve, reject) => {
-    db.get(sql, params, (err, row) => {
-      if (err) return reject(err);
-      resolve(row);
-    });
-  });
+export const get = async (sql, params = []) => {
+  const { data, error } = await supabase
+    .from('expenses')
+    .select('*')
+    .eq('id', params[0])
+    .single();
+    
+  if (error) throw error;
+  return data;
+};
 
-export const dbInstance = db;
+export const dbInstance = supabase;

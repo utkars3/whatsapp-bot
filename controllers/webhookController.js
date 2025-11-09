@@ -11,11 +11,16 @@ export const webhookHandler = async (req, res) => {
   const twiml = new MessagingResponse();
 
   try {
-    const expense = parseExpense(body);
+    const expense = await parseExpense(body);
     if (expense) {
       try {
-        const saved = await expenseService.addExpense({ user: from, amount: expense.amount, item: expense.item });
-        twiml.message(`Saved: ₹${saved.amount} — ${saved.item}`);
+        const saved = await expenseService.addExpense({
+          user: from,
+          amount: expense.amount,
+          item: expense.item,
+          category: expense.category
+        });
+        twiml.message(`Saved: ₹${saved.amount} — ${saved.item} (${saved.category})`);
       } catch (e) {
         console.error('DB insert failed', e);
         twiml.message('Error saving expense.');
@@ -37,9 +42,23 @@ export const webhookHandler = async (req, res) => {
         twiml.message(`No expenses for ${cmd.period}.`);
       } else {
         let msg = `Expenses (${cmd.period}):\n`;
-        for (const r of report.rows) msg += `₹${r.amount} - ${r.item}\n`;
+        for (const r of report.rows) msg += `₹${r.amount} - ${r.item} (${r.category})\n`;
         msg += `Total: ₹${report.total.toFixed(2)}`;
+
+        // Aggregate category totals
+        const categoryTotals = {};
+        for (const r of report.rows) {
+          const cat = (r.category || 'other').toLowerCase();
+          categoryTotals[cat] = (categoryTotals[cat] || 0) + (Number(r.amount) || 0);
+        }
+
+        // Generate pie chart URL
+        const { getCategoryPieChartUrl } = await import('../utils/chart.js');
+        const chartUrl = getCategoryPieChartUrl(categoryTotals);
+
+        // Send text and pie chart image
         twiml.message(msg);
+        twiml.message().media(chartUrl);
       }
       res.writeHead(200, { 'Content-Type': 'text/xml' });
       return res.end(twiml.toString());
