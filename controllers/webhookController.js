@@ -25,8 +25,7 @@ export const webhookHandler = async (req, res) => {
         console.error('DB insert failed', e);
         twiml.message('Error saving expense.');
       }
-      res.writeHead(200, { 'Content-Type': 'text/xml' });
-      return res.end(twiml.toString());
+      return res.status(200).set('Content-Type', 'text/xml').send(twiml.toString());
     }
 
     const cmd = parseCommand(body);
@@ -60,25 +59,21 @@ export const webhookHandler = async (req, res) => {
         twiml.message(msg);
         twiml.message().media(chartUrl);
       }
-      res.writeHead(200, { 'Content-Type': 'text/xml' });
-      return res.end(twiml.toString());
+      return res.status(200).set('Content-Type', 'text/xml').send(twiml.toString());
     }
 
     if (cmd.cmd === 'reset') {
-      await expenseService.wipeAll();
-      twiml.message('All expenses deleted.');
-      res.writeHead(200, { 'Content-Type': 'text/xml' });
-      return res.end(twiml.toString());
+  await expenseService.wipeAll();
+  twiml.message('All expenses deleted.');
+  return res.status(200).set('Content-Type', 'text/xml').send(twiml.toString());
     }
 
-    twiml.message('Sorry, did not understand. Send "help" for usage.');
-    res.writeHead(200, { 'Content-Type': 'text/xml' });
-    return res.end(twiml.toString());
+  twiml.message('Sorry, did not understand. Send "help" for usage.');
+  return res.status(200).set('Content-Type', 'text/xml').send(twiml.toString());
   } catch (err) {
     console.error('webhook error', err);
-    const errResp = new MessagingResponse();
-    errResp.message('Server error');
-    res.writeHead(200, { 'Content-Type': 'text/xml' });
-    return res.end(errResp.toString());
+  const errResp = new MessagingResponse();
+  errResp.message('Server error');
+  return res.status(200).set('Content-Type', 'text/xml').send(errResp.toString());
   }
 };
