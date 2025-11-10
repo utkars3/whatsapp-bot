@@ -53,6 +53,7 @@ export const getReport = async (user, period = 'today') => {
 /** List all expenses for a user (no time filter) */
 export const listAll = async (user) => {
   try {
+    
     return await Expense.findAllByUser(user);
   } catch (err) {
     console.error('listAll error:', err);

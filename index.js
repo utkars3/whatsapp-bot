@@ -3,6 +3,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import webhookRoute from './routes/webhookRoute.js';
 import apiRoutes from './routes/apiRoutes.js';
+import 'dotenv/config';
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));

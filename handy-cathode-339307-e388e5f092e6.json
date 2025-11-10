@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "handy-cathode-339307",
+  "private_key_id": "e388e5f092e61228fa17d02f84a48327c0b985ba",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQC+sK3LErLqiVB1\nKTer85fjiPSjNShL1NJQ5B9yftHEP/iPa/KgszaKz3/a1HFOPa8bEQzK2xU92flC\nWxHzif+zbePWeoDKyJnxGpevLNNqylxD75z3J1uImBmjlZZ/ABz7GQKQ/o0gKoA7\ngfktjcA5UZu1DF1JlY8DZV9O+yQ5xpTwfQG88j9f8FP0lWoTOCh9cEGPz3n4ycFw\nLYUweekUecRCuebBvvPMuBCc39Vb16kKwCHBsEzlxVM3YBLuFGvq7oDuwUn2hJAe\nuQBkEGXhz22RqKWFSphQwf1/LaCDwOyDp6GvoBBKIwXEnb7MZrpP0Uk0mItGv9WN\nCHypjK8JAgMBAAECggEAMKZCsJyEqPF/ZWSun1/2UEaQo1LchPw27AxHOZ7BRaBM\necrAi98s+x0VMW8huSRjmDQxX0+li7IgtZ0mZ0u9wLk4d2+pjBLBs5FlQXveNFCM\nWYi4MxYHdEHZyLJRQvV0b1tiHDvVJW+yZ3wxZj3T3MvFPdt5sVxGsEccmbnY9CQU\nsWzpnxHiHwHdqAF7eW6srTOfVNBh/sEpSU//mMLfABbj/XW2bejvd8FPueVVhOVQ\nK7VeoQcGimfj8BpPDdqWfw880DcCzDTS3PJQ2wnNFMQ2SG/A5XBMEZvCWc32Kezt\nkj9i7Wxnl3rk/5MBIIlSCw2XlfBI6pIGYeMPv741QQKBgQDts/TDWzm8+Qubn2NX\nVGGpCC3mOiCb95JZ31dq0+GjYGxdWku52T0LeJNnNqFt+yRmOdcOOMzHT5jqCeQ+\nBpEoLZpKNTEnpCn270bQaHS/Y0ys0/Rk4Y8V5gowqlElfhfainSjEfN7MXguyvha\ny0H8qYqnRyU0UnNHg7VQV/7EUwKBgQDNXlB3CF+QmM65KVuqdqjWu5AROQZ24g5e\n1Mwq4s3NnqY0YFHxkYz4u0QmKmRiUlNl1P1++zS87eYgyY9xUa9LL6UeewkbKwqB\nZULw0cyFccCQCsd2dG8Nx3GtJPaxh/C7wSVxEY7dD1H3pEWYIVIFmwM5RMlYA1Hu\nAdS9i+PTswKBgQCt+fuYjIl67ZD4azVLcsAz9n+ZtUuuvAoK63PRBZlteaJ2xSMN\nuJl8btj8PzjyBVHD3GuxxhLjgje6fFjoqOfPT2lRDROYHwhz6veajAl/Fw/EozGK\nMKkIbyFgMxhHZ73Pv2zU+cuKjE+ZeAdEdOYsJm8MNf9eB0bGvfiUAIPAbwKBgQCq\nxe/BW8wj8H2OiW65TFzP2z5MpA/VEduDTg7M5rbecjuhOCtL5o3EU+yyk/PPsse4\n2SlGy1uqc2U3BITsZVGQAvmaZBNJbTwaJ3tHyB37JYFMBjqhLOcgHSZRJXiiXfl4\nF3+sCz6yYkf11rssayDKmoFOwP1w26nocctXJxl3cwKBgQCF5aSActVqzkHA5Vy4\nDfyVRmmKUUtMbsGu0N6ZsHccLs1qGAcMtcKXxO8CtHBcAt/eXBW6a/r4MPQJxuya\nJZU/ivEg/L333DFrRnaia0dILOFTKEHT2VXT5T9Lyo5oA/NBcfvhYQfg4K6Bso5W\nBG4aHjjwyS9+MxAVHgiqsdA4nA==\n-----END PRIVATE KEY-----\n",
+  "client_email": "whatsapp-money-manager@handy-cathode-339307.iam.gserviceaccount.com",
+  "client_id": "111502505081152873750",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/whatsapp-money-manager%40handy-cathode-339307.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
