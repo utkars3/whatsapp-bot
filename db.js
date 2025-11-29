@@ -38,6 +38,8 @@ export const all = async (sql, params = []) => {
       .eq('user_id', user_id)
       .gte('created_at', sinceIso)
       .order('created_at', { ascending: false });
+
+    console.log("SUPABASE RESULT (WITH DATE FILTER) --->", data);  
       
     if (error) throw error;
     return data;
